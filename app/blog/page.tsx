@@ -1,14 +1,14 @@
-import type { Metadata } from "next"
+import BlogCategories from "@/components/blog/blog-categories"
+import BlogFeatured from "@/components/blog/blog-featured"
+import BlogHero from "@/components/blog/blog-hero"
+import BlogList from "@/components/blog/blog-list"
+import BlogNewsletter from "@/components/blog/blog-newsletter"
+import Footer from "@/components/footer"
+import Navbar from "@/components/navbar"
 import { AnimatedBackground } from "@/components/ui/animated-background"
 import { FloatingNavbar } from "@/components/ui/floating-navbar"
-import BlogHero from "@/components/blog/blog-hero"
-import BlogFeatured from "@/components/blog/blog-featured"
-import BlogList from "@/components/blog/blog-list"
-import BlogCategories from "@/components/blog/blog-categories"
-import BlogNewsletter from "@/components/blog/blog-newsletter"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
-import { Home, Info, Phone, ShoppingBag, FileText } from "lucide-react"
+import { FileText, Home, Info, Phone, ShoppingBag } from "lucide-react"
+import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Blog | Your Company",

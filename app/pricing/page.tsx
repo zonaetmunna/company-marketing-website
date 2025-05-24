@@ -1,15 +1,16 @@
-import type { Metadata } from "next"
+import { Breadcrumb } from "@/components/breadcrumb"
+import Footer from "@/components/footer"
+import Navbar from "@/components/navbar"
+import PricingComparison from "@/components/pricing/pricing-comparison"
+import PricingCTA from "@/components/pricing/pricing-cta"
+import PricingFAQ from "@/components/pricing/pricing-faq"
+
+import PricingPlans from "@/components/pricing/pricing-plans"
+import PricingTestimonials from "@/components/pricing/pricing-testimonials"
 import { AnimatedBackground } from "@/components/ui/animated-background"
 import { FloatingNavbar } from "@/components/ui/floating-navbar"
-import { Breadcrumb } from "@/components/breadcrumb"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
-import PricingPlans from "@/components/pricing/pricing-plans"
-import PricingFAQ from "@/components/pricing/pricing-faq"
-import PricingComparison from "@/components/pricing/pricing-comparison"
-import PricingTestimonials from "@/components/pricing/pricing-testimonials"
-import PricingCTA from "@/components/pricing/pricing-cta"
-import { Home, Info, Phone, ShoppingBag, FileText } from "lucide-react"
+import { FileText, Home, Info, Phone, ShoppingBag } from "lucide-react"
+import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Pricing | Your Company",

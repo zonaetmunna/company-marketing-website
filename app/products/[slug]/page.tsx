@@ -1,18 +1,27 @@
-import { notFound } from "next/navigation"
-import type { Metadata } from "next"
-import Image from "next/image"
-import Link from "next/link"
-import { Check, ChevronRight, Download, Star } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Badge } from "@/components/ui/badge"
-import { AnimatedBackground } from "@/components/ui/animated-background"
-import { FloatingNavbar } from "@/components/ui/floating-navbar"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
-import ProductRelated from "@/components/products/product-related"
-import { Home, Info, Phone, ShoppingBag, FileText } from "lucide-react"
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
+import ProductRelated from "@/components/products/product-related";
+import { AnimatedBackground } from "@/components/ui/animated-background";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { FloatingNavbar } from "@/components/ui/floating-navbar";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Check,
+  ChevronRight,
+  Download,
+  FileText,
+  Home,
+  Info,
+  Phone,
+  ShoppingBag,
+  Star,
+} from "lucide-react";
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
 // Mock product data - in a real app, this would come from a database or API
 const products = [
@@ -163,42 +172,56 @@ const products = [
     ],
   },
   // Add more products as needed
-]
+];
 
 const navItems = [
   { name: "Home", link: "/", icon: <Home className="h-4 w-4" /> },
   { name: "About", link: "/about", icon: <Info className="h-4 w-4" /> },
-  { name: "Products", link: "/products", icon: <ShoppingBag className="h-4 w-4" /> },
+  {
+    name: "Products",
+    link: "/products",
+    icon: <ShoppingBag className="h-4 w-4" />,
+  },
   { name: "Blog", link: "/blog", icon: <FileText className="h-4 w-4" /> },
   { name: "Contact", link: "/contact", icon: <Phone className="h-4 w-4" /> },
-]
+];
 
 export function generateStaticParams() {
   return products.map((product) => ({
     slug: product.slug,
-  }))
+  }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const product = products.find((p) => p.slug === params.slug)
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const product = products.find((p) => p.slug === slug);
 
   if (!product) {
     return {
       title: "Product Not Found",
-    }
+    };
   }
 
   return {
     title: `${product.name} | Your Company`,
     description: product.description,
-  }
+  };
 }
 
-export default function ProductPage({ params }: { params: { slug: string } }) {
-  const product = products.find((p) => p.slug === params.slug)
+export default async function ProductPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const { slug } = await params;
+  const product = products.find((p) => p.slug === slug);
 
   if (!product) {
-    notFound()
+    notFound();
   }
 
   return (
@@ -228,7 +251,9 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             {/* Product Image */}
             <div className="relative overflow-hidden rounded-xl border border-primary/10">
               <div className="absolute top-4 right-4 z-10">
-                <Badge className="bg-primary text-primary-foreground">Featured</Badge>
+                <Badge className="bg-primary text-primary-foreground">
+                  Featured
+                </Badge>
               </div>
               <Image
                 src={product.image || "/placeholder.svg"}
@@ -242,8 +267,12 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             {/* Product Info */}
             <div className="flex flex-col justify-center space-y-6">
               <div>
-                <h1 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">{product.name}</h1>
-                <p className="mt-2 text-xl text-muted-foreground">{product.tagline}</p>
+                <h1 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
+                  {product.name}
+                </h1>
+                <p className="mt-2 text-xl text-muted-foreground">
+                  {product.tagline}
+                </p>
               </div>
 
               <div className="flex items-center gap-2">
@@ -251,22 +280,35 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      className={`h-5 w-5 ${i < Math.floor(product.rating) ? "text-yellow-400 fill-yellow-400" : "text-gray-300"}`}
+                      className={`h-5 w-5 ${
+                        i < Math.floor(product.rating)
+                          ? "text-yellow-400 fill-yellow-400"
+                          : "text-gray-300"
+                      }`}
                     />
                   ))}
                 </div>
                 <span className="font-medium">{product.rating}</span>
-                <span className="text-muted-foreground">({product.reviewCount} reviews)</span>
+                <span className="text-muted-foreground">
+                  ({product.reviewCount} reviews)
+                </span>
               </div>
 
               <div className="space-y-2">
                 <div className="flex items-baseline gap-2">
-                  <span className="text-3xl font-bold">{product.price.monthly}</span>
+                  <span className="text-3xl font-bold">
+                    {product.price.monthly}
+                  </span>
                   <span className="text-muted-foreground">/month</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-muted-foreground">Annual billing: {product.price.annually}</span>
-                  <Badge variant="outline" className="text-green-600 border-green-600">
+                  <span className="text-muted-foreground">
+                    Annual billing: {product.price.annually}
+                  </span>
+                  <Badge
+                    variant="outline"
+                    className="text-green-600 border-green-600"
+                  >
                     {product.price.savings}
                   </Badge>
                 </div>
@@ -278,7 +320,11 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 <Button size="lg" className="w-full sm:w-auto">
                   Request a Demo
                 </Button>
-                <Button size="lg" variant="outline" className="w-full sm:w-auto">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="w-full sm:w-auto"
+                >
                   <Download className="mr-2 h-4 w-4" />
                   Download Brochure
                 </Button>
@@ -327,7 +373,10 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
                 <div className="grid gap-6 md:grid-cols-2">
                   {product.gallery.map((image, index) => (
-                    <div key={index} className="overflow-hidden rounded-xl border border-primary/10">
+                    <div
+                      key={index}
+                      className="overflow-hidden rounded-xl border border-primary/10"
+                    >
                       <Image
                         src={image || "/placeholder.svg"}
                         alt={`${product.name} feature ${index + 1}`}
@@ -344,12 +393,19 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                 <Card className="border border-primary/10">
                   <CardContent className="p-6">
                     <div className="grid gap-4 md:grid-cols-2">
-                      {Object.entries(product.specs).map(([key, value], index) => (
-                        <div key={index} className="flex justify-between py-2 border-b border-border/40 last:border-0">
-                          <span className="font-medium">{key}</span>
-                          <span className="text-muted-foreground">{value}</span>
-                        </div>
-                      ))}
+                      {Object.entries(product.specs).map(
+                        ([key, value], index) => (
+                          <div
+                            key={index}
+                            className="flex justify-between py-2 border-b border-border/40 last:border-0"
+                          >
+                            <span className="font-medium">{key}</span>
+                            <span className="text-muted-foreground">
+                              {value}
+                            </span>
+                          </div>
+                        )
+                      )}
                     </div>
                   </CardContent>
                 </Card>
@@ -363,13 +419,20 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                         <div className="flex flex-col gap-4">
                           <div className="flex">
                             {[...Array(5)].map((_, i) => (
-                              <Star key={i} className="h-4 w-4 text-yellow-400 fill-yellow-400" />
+                              <Star
+                                key={i}
+                                className="h-4 w-4 text-yellow-400 fill-yellow-400"
+                              />
                             ))}
                           </div>
-                          <blockquote className="text-lg italic">"{testimonial.quote}"</blockquote>
+                          <blockquote className="text-lg italic">
+                            "{testimonial.quote}"
+                          </blockquote>
                           <div>
                             <p className="font-medium">{testimonial.author}</p>
-                            <p className="text-sm text-muted-foreground">{testimonial.title}</p>
+                            <p className="text-sm text-muted-foreground">
+                              {testimonial.title}
+                            </p>
                           </div>
                         </div>
                       </CardContent>
@@ -383,8 +446,13 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                   <CardContent className="p-6">
                     <div className="space-y-6">
                       {product.faq.map((item, index) => (
-                        <div key={index} className="pb-6 border-b border-border/40 last:border-0 last:pb-0">
-                          <h3 className="text-lg font-medium mb-2">{item.question}</h3>
+                        <div
+                          key={index}
+                          className="pb-6 border-b border-border/40 last:border-0 last:pb-0"
+                        >
+                          <h3 className="text-lg font-medium mb-2">
+                            {item.question}
+                          </h3>
                           <p className="text-muted-foreground">{item.answer}</p>
                         </div>
                       ))}
@@ -404,10 +472,12 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
       <section className="py-12 md:py-20 bg-gradient-1">
         <div className="container px-4 md:px-6 text-center">
           <div className="mx-auto max-w-3xl space-y-6">
-            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Ready to transform your business?</h2>
+            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+              Ready to transform your business?
+            </h2>
             <p className="text-xl text-muted-foreground">
-              Join thousands of satisfied customers who have taken their operations to the next level with{" "}
-              {product.name}.
+              Join thousands of satisfied customers who have taken their
+              operations to the next level with {product.name}.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
               <Button size="lg">Schedule a Demo</Button>
@@ -421,5 +491,5 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
       <Footer />
     </div>
-  )
+  );
 }

@@ -1,13 +1,13 @@
-import type { Metadata } from "next"
-import { AnimatedBackground } from "@/components/ui/animated-background"
-import { FloatingNavbar } from "@/components/ui/floating-navbar"
+import Footer from "@/components/footer"
+import Navbar from "@/components/navbar"
+import ServiceCTA from "@/components/services/service-cta"
+import ServiceProcess from "@/components/services/service-process"
 import ServicesHero from "@/components/services/services-hero"
 import ServicesList from "@/components/services/services-list"
-import ServiceProcess from "@/components/services/service-process"
-import ServiceCTA from "@/components/services/service-cta"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
-import { Home, Info, Phone, ShoppingBag, FileText } from "lucide-react"
+import { AnimatedBackground } from "@/components/ui/animated-background"
+import { FloatingNavbar } from "@/components/ui/floating-navbar"
+import { FileText, Home, Info, Phone, ShoppingBag } from "lucide-react"
+import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Our Services | Your Company",

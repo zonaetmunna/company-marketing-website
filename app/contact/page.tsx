@@ -1,14 +1,14 @@
-import type { Metadata } from "next"
-import { AnimatedBackground } from "@/components/ui/animated-background"
-import { FloatingNavbar } from "@/components/ui/floating-navbar"
-import ContactHero from "@/components/contact/contact-hero"
+import ContactFAQ from "@/components/contact/contact-faq"
 import ContactForm from "@/components/contact/contact-form"
+import ContactHero from "@/components/contact/contact-hero"
 import ContactInfo from "@/components/contact/contact-info"
 import ContactMap from "@/components/contact/contact-map"
-import ContactFAQ from "@/components/contact/contact-faq"
-import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
-import { Home, Info, Phone, ShoppingBag, FileText } from "lucide-react"
+import Navbar from "@/components/navbar"
+import { AnimatedBackground } from "@/components/ui/animated-background"
+import { FloatingNavbar } from "@/components/ui/floating-navbar"
+import { FileText, Home, Info, Phone, ShoppingBag } from "lucide-react"
+import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Contact Us | Your Company",

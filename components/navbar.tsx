@@ -1,11 +1,13 @@
 "use client"
 
-import * as React from "react"
-import Link from "next/link"
-import { Menu } from "lucide-react"
-import { motion } from "framer-motion"
-import { cn } from "@/lib/utils"
+import { ModeToggle } from "@/components/mode-toggle"
+import { AnimatedButton } from "@/components/ui/animated-button"
+import { AnimatedTooltip } from "@/components/ui/animated-tooltip"
 import { Button } from "@/components/ui/button"
+import { GlowEffect } from "@/components/ui/glow-effect"
+import { HoverGlowCard } from "@/components/ui/hover-glow-card"
+import { HoverHighlight } from "@/components/ui/hover-highlight"
+import { Magnetic } from "@/components/ui/magnetic"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -16,14 +18,12 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { ModeToggle } from "@/components/mode-toggle"
-import { Magnetic } from "@/components/ui/magnetic"
-import { AnimatedTooltip } from "@/components/ui/animated-tooltip"
-import { GlowEffect } from "@/components/ui/glow-effect"
 import { TextGlowHover } from "@/components/ui/text-glow-hover"
-import { HoverHighlight } from "@/components/ui/hover-highlight"
-import { AnimatedButton } from "@/components/ui/animated-button"
-import { HoverGlowCard } from "@/components/ui/hover-glow-card"
+import { cn } from "@/lib/utils"
+import { motion } from "framer-motion"
+import { Menu } from "lucide-react"
+import Link from "next/link"
+import * as React from "react"
 
 const components: { title: string; href: string; description: string }[] = [
   {
@@ -132,6 +132,13 @@ function DesktopNav() {
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
+          <Link href="/pricing" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              <TextGlowHover>Pricing</TextGlowHover>
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
           <Link href="/blog" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               <TextGlowHover>Blog</TextGlowHover>
@@ -142,6 +149,13 @@ function DesktopNav() {
           <Link href="/services" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               <TextGlowHover>Services</TextGlowHover>
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <Link href="/support" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              <TextGlowHover>Support</TextGlowHover>
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
@@ -163,11 +177,17 @@ function MobileNav() {
         <Link href="/about" className="font-medium transition-colors hover:text-foreground/80">
           <TextGlowHover>About</TextGlowHover>
         </Link>
+        <Link href="/pricing" className="font-medium transition-colors hover:text-foreground/80">
+          <TextGlowHover>Pricing</TextGlowHover>
+        </Link>
         <Link href="/blog" className="font-medium transition-colors hover:text-foreground/80">
           <TextGlowHover>Blog</TextGlowHover>
         </Link>
         <Link href="/services" className="font-medium transition-colors hover:text-foreground/80">
           <TextGlowHover>Services</TextGlowHover>
+        </Link>
+        <Link href="/support" className="font-medium transition-colors hover:text-foreground/80">
+          <TextGlowHover>Support</TextGlowHover>
         </Link>
         <Link href="/contact" className="font-medium transition-colors hover:text-foreground/80">
           <TextGlowHover>Contact</TextGlowHover>
@@ -186,7 +206,7 @@ const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWit
             <a
               ref={ref}
               className={cn(
-                "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+                "block select-none relative z-50 space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
                 className,
               )}
               {...props}

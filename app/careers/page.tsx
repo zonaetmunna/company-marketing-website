@@ -1,16 +1,16 @@
-import type { Metadata } from "next"
+import { Breadcrumb } from "@/components/breadcrumb"
+import CareersBenefits from "@/components/careers/careers-benefits"
+import CareersCTA from "@/components/careers/careers-cta"
+import CareersHero from "@/components/careers/careers-hero"
+import CareersOpenings from "@/components/careers/careers-openings"
+import CareersTestimonials from "@/components/careers/careers-testimonials"
+import CareersValues from "@/components/careers/careers-values"
+import Footer from "@/components/footer"
+import Navbar from "@/components/navbar"
 import { AnimatedBackground } from "@/components/ui/animated-background"
 import { FloatingNavbar } from "@/components/ui/floating-navbar"
-import { Breadcrumb } from "@/components/breadcrumb"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
-import CareersHero from "@/components/careers/careers-hero"
-import CareersValues from "@/components/careers/careers-values"
-import CareersOpenings from "@/components/careers/careers-openings"
-import CareersBenefits from "@/components/careers/careers-benefits"
-import CareersTestimonials from "@/components/careers/careers-testimonials"
-import CareersCTA from "@/components/careers/careers-cta"
-import { Home, Info, Phone, ShoppingBag, FileText } from "lucide-react"
+import { FileText, Home, Info, Phone, ShoppingBag } from "lucide-react"
+import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Careers | Your Company",
@@ -47,9 +47,11 @@ export default function CareersPage() {
 
         <CareersBenefits />
 
-        <AnimatedBackground variant="dots" intensity="light" className="mt-16 rounded-xl">
-          <CareersOpenings />
-        </AnimatedBackground>
+        <div id="openings">
+          <AnimatedBackground variant="dots" intensity="light" className="mt-16 rounded-xl">
+            <CareersOpenings />
+          </AnimatedBackground>
+        </div>
 
         <CareersTestimonials />
 

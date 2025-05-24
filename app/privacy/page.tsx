@@ -1,11 +1,11 @@
-import type { Metadata } from "next"
+import { Breadcrumb } from "@/components/breadcrumb"
+import Footer from "@/components/footer"
+import Navbar from "@/components/navbar"
+import { TableOfContents } from "@/components/table-of-contents"
 import { AnimatedBackground } from "@/components/ui/animated-background"
 import { FloatingNavbar } from "@/components/ui/floating-navbar"
-import { Breadcrumb } from "@/components/breadcrumb"
-import { TableOfContents } from "@/components/table-of-contents"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
-import { Home, Info, Phone, ShoppingBag, FileText, Shield } from "lucide-react"
+import { FileText, Home, Info, Phone, Shield, ShoppingBag } from "lucide-react"
+import type { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Privacy Policy | Your Company",
